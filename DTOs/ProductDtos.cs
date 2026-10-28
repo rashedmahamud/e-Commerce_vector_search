@@ -10,10 +10,15 @@ public record CreateProductRequest(
 );
 
 public record GenerateEmbeddingsRequest(
+    int id,
     string inputText,
     int dimensions,
     bool normalize
   
+);
+public record GenerateEmbeddingsResponse(
+      int id,
+     float[] textEmbedding
 );
 
 public record ProductResponse(
