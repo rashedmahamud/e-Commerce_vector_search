@@ -11,9 +11,8 @@ public record CreateProductRequest(
 
 public record GenerateEmbeddingsRequest(
     int id,
-    string inputText,
-    int dimensions,
-    bool normalize
+    string text
+
   
 );
 public record GenerateEmbeddingsResponse(

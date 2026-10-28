@@ -59,12 +59,12 @@ public class ProductsController : ControllerBase
 
         foreach (var item in requests)
         {
-            if (string.IsNullOrWhiteSpace(item.inputText))
+            if (string.IsNullOrWhiteSpace(item.text))
                 continue;
 
-            var vector = await _embeddings.EmbedAsync(item.inputText, ct);
+            var vector = await _embeddings.EmbedAsync(item.text, ct);
 
-            vectorList.Add(new GenerateEmbeddingsResponse(item.id, vector.ToArray()));
+          vectorList.Add(new GenerateEmbeddingsResponse(item.id, vector.ToArray()));
         }
 
         return Ok(vectorList);
