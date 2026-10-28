@@ -9,6 +9,13 @@ public record CreateProductRequest(
     string? ImageUrl
 );
 
+public record GenerateEmbeddingsRequest(
+    string inputText,
+    int dimensions,
+    bool normalize
+  
+);
+
 public record ProductResponse(
     Guid Id,
     string Sku,

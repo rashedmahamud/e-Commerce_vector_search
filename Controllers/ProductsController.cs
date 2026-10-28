@@ -47,7 +47,29 @@ public class ProductsController : ControllerBase
 
         return CreatedAtAction(nameof(GetById), new { id = product.Id }, ToResponse(product));
     }
+    [HttpPost]
+    public async Task<ActionResult<ProductResponse>> GenerateEmbeddings(GenerateEmbeddingsRequest request, CancellationToken ct)
+    {
+        var textToEmbed = request.inputText ;
+        var vector = await _embeddings.EmbedAsync(textToEmbed, ct);
+        return Ok(vector);
 
+        //var product = new Product
+        //{
+        //    Sku = request.Sku,
+        //    Name = request.Name,
+        //    Description = request.Description,
+        //    Category = request.Category,
+        //    Price = request.Price,
+        //    ImageUrl = request.ImageUrl,
+        //    Embedding = new Vector(vector)
+        //};
+
+        //_db.Products.Add(product);
+        //await _db.SaveChangesAsync(ct);
+
+        //return CreatedAtAction(nameof(GetById), new { id = request.inputText }, ToResponse(product));
+    }
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<ProductResponse>> GetById(Guid id, CancellationToken ct)
     {
